@@ -19,8 +19,26 @@ browserSync.create()
 
 // Build paths
 
+const server  = 'htdocs'
 const folders = process.cwd().split('/')
 const project = `${folders[folders.length - 1]}/`
+
+let local = ''
+
+const buildLocal = () => {
+  let index = 0
+  for (const folder of folders) {
+    if (folder == server) {
+      index = folders.indexOf(server)
+      for (let i = index + 1 ; i < folders.length ; i++) {
+        if (folders[i] != project) local += `${folders[i]}/`
+        else break
+      }
+      break
+    }
+  }
+}
+buildLocal()
 
 const config = {
   public  : 'public/',
@@ -46,7 +64,7 @@ const message = {
 
 gulp.task('server', ['assets', 'styles', 'scripts'], () => {
   browserSync.init({
-    proxy   : `http://localhost/${project}public/`,
+    proxy   : `http://localhost/${local}public/`,
     browser : 'Google Chrome'
   })
   gulp.watch(`${config.src}assets/**/*.*`, ['assets'])
