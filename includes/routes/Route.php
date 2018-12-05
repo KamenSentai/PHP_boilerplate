@@ -23,7 +23,6 @@ class Route {
   public function match($url) {
     $url = trim($url, '/');
     $path = preg_replace_callback('#:([\w]+)#', [$this, 'matching'], $this->path);
-
     $regex = "#^$path$#i";
 
     if (!preg_match($regex, $url, $matches)) {
@@ -39,7 +38,7 @@ class Route {
 
   private function matching($match) {
     if (isset($this->params[$match[1]])) {
-      return '(' . $this->params[$match[1]] . ')';
+      return "({$this->params[$match[1]]})";
     }
     return '([^/]+)';
   }

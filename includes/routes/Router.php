@@ -6,7 +6,7 @@ class Router {
   private $url;
   private $namespace;
   private $routes = [];
-  private $namedRoutes = [];
+  private $names = [];
 
   public function __construct($url, $namespace) {
     $this->url = $url;
@@ -22,7 +22,7 @@ class Router {
     }
 
     if ($name) {
-      $this->namedRoutes[$name] = $route;
+      $this->names[$name] = $route;
     }
 
     return $route;
@@ -37,11 +37,11 @@ class Router {
   }
 
   public function url($name, $params = []) {
-    if (!isset($this->namedRoutes[$name])) {
+    if (!isset($this->names[$name])) {
       throw new \Exception('No route matches this name');
     }
 
-    return $this->namedRoutes[$name]->path($params);
+    return $this->names[$name]->path($params);
   }
 
   public function run() {
