@@ -6,10 +6,10 @@ class Router {
   private $url;
   private $namespace;
   private $routes = [];
-  private $names = [];
+  private $names  = [];
 
   public function __construct($url, $namespace) {
-    $this->url = $url;
+    $this->url       = $url;
     $this->namespace = $namespace;
   }
 

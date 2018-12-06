@@ -7,11 +7,11 @@ class Route {
   private $callable;
   private $namespace;
   private $matches = [];
-  private $params = [];
+  private $params  = [];
 
   public function __construct($path, $callable, $namespace) {
-    $this->path = trim($path, '/');
-    $this->callable = $callable;
+    $this->path      = trim($path, '/');
+    $this->callable  = $callable;
     $this->namespace = $namespace;
   }
 
@@ -21,8 +21,8 @@ class Route {
   }
 
   public function match($url) {
-    $url = trim($url, '/');
-    $path = preg_replace_callback('#:([\w]+)#', [$this, 'matching'], $this->path);
+    $url   = trim($url, '/');
+    $path  = preg_replace_callback('#:([\w]+)#', [$this, 'matching'], $this->path);
     $regex = "#^$path$#i";
 
     if (!preg_match($regex, $url, $matches)) {
@@ -40,12 +40,13 @@ class Route {
     if (isset($this->params[$match[1]])) {
       return "({$this->params[$match[1]]})";
     }
+
     return '([^/]+)';
   }
 
   public function call() {
     if (is_string($this->callable)) {
-      $params = explode('#', $this->callable);
+      $params     = explode('#', $this->callable);
       $controller = $this->namespace . '\\Controllers\\' . $params[0];
       $controller = new $controller();
       return call_user_func_array([$controller, $params[1]], $this->matches);
@@ -56,6 +57,7 @@ class Route {
 
   public function path($params) {
     $path = $this->path;
+
     foreach ($params as $key => $value) {
       $path = str_replace(":$key", $value, $path);
     }

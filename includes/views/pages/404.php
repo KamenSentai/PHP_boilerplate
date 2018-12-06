@@ -5,5 +5,5 @@
 <?php $inheritance->endblock('title'); ?>
 
 <?php $inheritance->startblock('body'); ?>
-  <h1><?= $data['h1']; ?></h1>
+  <h1>404 not found</h1>
 <?php $inheritance->endblock('body'); ?>
