@@ -21,13 +21,17 @@ $url = isset($_GET['url']) ? $_GET['url'] : '';
 $router = new PR\Router($url, __NAMESPACE__);
 
 $router->get('/', function() use ($router) {
-  echo 'homepage' . '<br>';
-  echo $router->url('post.show') . '<br>';
-  echo $router->url('posts.show', ['id' =>  1, 'slug' => 'hello-world']);
+  $template = new PV\Template($router);
+  $data = [
+    'title' => 'Hello',
+  ];
+  $template->render('index', $data);
 }, 'index.show');
 
 $router->get('/posts', function() {
-  echo 'GET posts';
+  echo 'GET posts' . '<br>';
+  echo $router->url('post.show') . '<br>';
+  echo $router->url('posts.show', ['id' =>  1, 'slug' => 'hello-world']);
 }, 'post.show');
 
 $router
