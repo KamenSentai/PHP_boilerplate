@@ -15,6 +15,9 @@ use Portfolio\Controllers as PC;
 require '../includes/Autoloader.php';
 Autoloader::register();
 
+$errors = new PS\Errors();
+$config = new PS\Config();
+
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 
 $router = new PR\Router($url, __NAMESPACE__);
