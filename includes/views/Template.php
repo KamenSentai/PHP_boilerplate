@@ -5,14 +5,19 @@ namespace Portfolio\Views;
 class Template {
   private $router;
   private $inheritance;
+  private $data;
   private $path;
-  private $error;
 
-  public function __construct($router, $inheritance, $path, $error) {
+  public function __construct($router, $inheritance, $path) {
     $this->router      = $router;
     $this->inheritance = $inheritance;
     $this->path        = $path;
-    $this->error       = $error;
+
+    $router->template($this);
+  }
+
+  public function data($data) {
+    $this->data = $data;
   }
 
   public function render($page, $data = []) {
@@ -23,8 +28,8 @@ class Template {
     $dir  = __DIR__ . '/';
 
     if (!file_exists($file)) {
-      $page = $this->error;
-      $data = $this->error();
+      http_response_code(404);
+      $page = '404';
     }
 
     require $this->file($page);
@@ -32,13 +37,5 @@ class Template {
 
   private function file($page) {
     return __DIR__ . "{$this->path}/{$page}.php";
-  }
-
-  private function error() {
-    $data = [
-      'title' => '404',
-    ];
-
-    return $data;
   }
 }

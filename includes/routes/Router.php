@@ -5,12 +5,17 @@ namespace Portfolio\Routes;
 class Router {
   private $url;
   private $namespace;
+  private $template;
   private $routes = [];
   private $names  = [];
 
   public function __construct($url, $namespace) {
     $this->url       = $url;
     $this->namespace = $namespace;
+  }
+
+  public function template($template) {
+    $this->template = $template;
   }
 
   private function add($path, $callable, $name, $method) {
@@ -55,6 +60,6 @@ class Router {
       }
     }
 
-    throw new \Exception('Router: No matching route');
+    return $this->template->render('');
   }
 }
