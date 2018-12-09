@@ -18,6 +18,7 @@ $errors      = new PS\Errors();
 $config      = new PS\Config();
 $router      = new PR\Router(isset($_GET['url']) ? $_GET['url'] : '', __NAMESPACE__);
 $inheritance = new PH\Inheritance();
+$database    = new PM\Database(DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS);
 $template    = new PV\Template($router, $inheritance, '/pages');
 
 $router->get('/', function() use ($router, $template) {
@@ -36,48 +37,23 @@ $router->get('/posts', function() use ($router, $template) {
   $template->render('posts', $data);
 }, 'posts.show');
 
-$router
-  ->get(
-    '/posts/:id-:slug',
-    function($id, $slug) use ($router, $template) {
-      echo $router->url('post.show', ['id' =>  1, 'slug' => 'hello-world']) .'<br>';
-      echo "<a href=\"{$router->url('posts.show')}\">Post</a>";
-      echo '<br>';
-      echo "<a href=\"{$router->url('index.show')}\">Index</a>";
-    },
-    'post.show'
-  )
-  ->with('id', '[0-9]+')
-  ->with('slug', '[a-z\-0-9]+')
-;
-
 $router->get('/articles/:id', 'ArticlesController#show');
 
 $router
   ->get(
     '/posts/:id',
-    function($id) {
-      // echo $router->url('post.show') . '<br>';
-      // echo $router->url('post.show', ['id' =>  1, 'slug' => 'hello-world']);
-      echo 'GET posts ' . $id;
-      ?>
+    function($id) use ($router, $template, $database) {
+      $work = $database->fetch("SELECT * FROM works WHERE id=$id");
 
-      <form action="" method="post">
-        <input type="text" name="name">
-        <button type="submit">Envoyer</button>
-      </form>
-
-      <?php
-    }
+      $data = [
+        'title' => $id,
+        'h1' => "Post $id",
+      ];
+      $template->render('posts', $data);
+    },
+    'post.show'
   )
   ->with('id', '[0-9]+')
 ;
-
-$router->post('/posts/:id', function($id) {
-  echo 'POST posts ' . $id . '<br>';
-  echo '<pre>';
-  print_r($_POST);
-  echo '</pre>';
-});
 
 $router->run();

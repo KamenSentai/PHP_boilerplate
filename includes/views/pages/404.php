@@ -1,7 +1,7 @@
 <?php include $dir . 'base.php'; ?>
 
 <?php $inheritance->startblock('title'); ?>
-  <?= $data['title']; ?>
+  404 page not found
 <?php $inheritance->endblock('title'); ?>
 
 <?php $inheritance->startblock('body'); ?>

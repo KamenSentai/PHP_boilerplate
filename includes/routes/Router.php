@@ -60,6 +60,6 @@ class Router {
       }
     }
 
-    return $this->template->render('');
+    return $this->template->render('404');
   }
 }

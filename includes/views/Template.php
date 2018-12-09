@@ -27,12 +27,15 @@ class Template {
     $file = $this->file($page);
     $dir  = __DIR__ . '/';
 
-    if (!file_exists($file)) {
+    if (!file_exists($file) || $page == '404') {
       http_response_code(404);
-      $page = '404';
     }
 
-    require $this->file($page);
+    if (http_response_code() === 404) {
+      require $this->file('404');
+    } else {
+      require $this->file($page);
+    }
   }
 
   private function file($page) {
