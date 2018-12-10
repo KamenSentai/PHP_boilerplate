@@ -49,6 +49,10 @@ $router
     function($id) use ($router, $template, $database) {
       $work = $database->fetch("SELECT * FROM works WHERE id=$id");
 
+      echo '<pre>';
+      var_dump($work);
+      echo '</pre>';
+
       $data = [
         'title' => $id,
         'h1' => "Post $id",

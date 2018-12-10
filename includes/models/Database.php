@@ -27,10 +27,10 @@ class Database {
   }
 
   public function fetch($query) {
-    $this->response($this->query($query)->fetch());
+    return $this->response($this->query($query)->fetch());
   }
 
   public function fetchAll($query) {
-    $this->response($this->query($query)->fetchAll());
+    return $this->response($this->query($query)->fetchAll());
   }
 }
