@@ -26,14 +26,18 @@ $router->get('/', function() use ($router, $template) {
     'title' => 'Hello',
     'h1' => 'Hello world',
   ];
-  $template->render('index', $data);
-}, 'index.show');
+  $template->render('home', $data);
+}, 'home.show');
 
 $router->get('/posts', function() use ($router, $template) {
   $data = [
     'title' => 'Posts',
     'h1' => 'Hello world',
   ];
+  for ($i=0; $i < 10 ; $i++) {
+    echo '<br>';
+    echo "<a href=\"{$router->url('post.show', ['id' => $i])}\">Post $i</a>";
+  }
   $template->render('posts', $data);
 }, 'posts.show');
 
