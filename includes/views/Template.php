@@ -21,6 +21,7 @@ class Template {
   }
 
   public function render($page, $data = []) {
+    $router      = $this->router;
     $inheritance = $this->inheritance;
     $path        = $this->path;
 
