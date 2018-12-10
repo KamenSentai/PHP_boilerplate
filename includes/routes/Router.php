@@ -46,7 +46,7 @@ class Router {
       throw new \Exception('Router: No route matches this name');
     }
 
-    return BASE . $this->names[$name]->path($params);
+    return BASE_URL . $this->names[$name]->path($params);
   }
 
   public function run() {
