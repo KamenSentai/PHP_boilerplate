@@ -9,7 +9,7 @@ class Database {
     try {
       $this->pdo = new \PDO("mysql:host=$host;dbname=$name;port=$port", $user, $pass);
       $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       die('Could not connect');
     }
   }
