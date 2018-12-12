@@ -53,6 +53,14 @@ $router
       var_dump($work);
       echo '</pre>';
 
+      echo '<br>';
+
+      $works = $database->fetchAll("SELECT * FROM works WHERE id=$id");
+
+      echo '<pre>';
+      var_dump($works);
+      echo '</pre>';
+
       $data = [
         'title' => $id,
         'h1' => "Post $id",
