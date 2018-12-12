@@ -30,7 +30,7 @@ class Database {
   }
 
   private function query($statement) {
-    if (!$this->pdo) {
+    if (is_null($this->pdo)) {
       $this->connect();
     }
 
