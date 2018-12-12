@@ -25,7 +25,7 @@ class Database {
       $this->pdo = new \PDO($url, $this->user, $this->pass);
       $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
     } catch (\Exception $e) {
-      die('Could not connect');
+      die('Could not connect to database');
     }
   }
 
