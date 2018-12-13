@@ -2,8 +2,8 @@
 
 namespace Portfolio\Controllers;
 
-class ArticlesController {
+class WorksController {
   public function show($id) {
-    echo "Article $id";
+    echo "Work $id";
   }
 }
