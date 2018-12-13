@@ -24,7 +24,7 @@ $template    = new PV\Template($router, $inheritance, '/pages');
 $router->get('/', function() use ($router, $template) {
   $data = [
     'title' => 'Alain Cao Van Truong | Full stack developer',
-    'h1' => 'Portfolio',
+    'h1' => 'Home',
   ];
   $template->render('home', $data);
 }, 'home');
