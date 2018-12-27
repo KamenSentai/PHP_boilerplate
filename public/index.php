@@ -19,6 +19,7 @@ $config      = new PS\Config();
 $router      = new PR\Router(isset($_GET['url']) ? $_GET['url'] : '', __NAMESPACE__);
 $inheritance = new PH\Inheritance();
 $database    = new PM\Database(DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS);
+$data        = new PM\Data(__DIR__ . '/../data/');
 $template    = new PV\Template($router, $inheritance, '/pages');
 
 $router->get('/', function() use ($router, $template) {
@@ -66,6 +67,24 @@ $router
       $template->render('work', $data);
     },
     'work'
+  )
+  ->with('slug', '[a-z0-9]+(-[a-z0-9]+)*')
+;
+
+$router
+  ->get(
+    '/projects/:slug',
+    function($slug) use ($router, $template, $data) {
+      $projects = $data->getFile('projects');
+      $project  = $data->findElement($projects, 'slug', $slug);
+
+      $data = [
+        'title' => "$project->title | Alain Cao Van Truong",
+        'h1' => "$project->title",
+      ];
+      $template->render('project', $data);
+    },
+    'type'
   )
   ->with('slug', '[a-z0-9]+(-[a-z0-9]+)*')
 ;

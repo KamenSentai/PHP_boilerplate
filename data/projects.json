@@ -1,0 +1,7 @@
+[
+  { "title": "Work", "description": "School project", "slug": "work" },
+  { "title": "Jump", "description": "School project", "slug": "jump" },
+  { "title": "Text", "description": "School project", "slug": "text" },
+  { "title": "Code", "description": "School project", "slug": "code" },
+  { "title": "Test", "description": "School project", "slug": "test" }
+]
