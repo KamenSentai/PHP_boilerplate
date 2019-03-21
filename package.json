@@ -1,5 +1,5 @@
 {
-  "name": "portfolio_2019",
+  "name": "php_boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KamenSentai/portfolio_2019.git"
+    "url": "git+https://github.com/KamenSentai/PHP_boilerplate.git"
   },
   "author": "Alain CVT <cvt.alain@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KamenSentai/portfolio_2019/issues"
+    "url": "https://github.com/KamenSentai/PHP_boilerplate/issues"
   },
-  "homepage": "https://github.com/KamenSentai/portfolio_2019#readme",
+  "homepage": "https://github.com/KamenSentai/PHP_boilerplate#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
