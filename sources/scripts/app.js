@@ -1,1 +1,3 @@
-console.log('ok')
+import LazyLoad from './components/LazyLoad'
+
+LazyLoad.init()
