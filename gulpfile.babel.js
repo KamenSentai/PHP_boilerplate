@@ -55,9 +55,9 @@ const message = {
 }
 
 /**
- * 
+ *
  * Development
- * 
+ *
  */
 
 // Server
@@ -67,10 +67,10 @@ gulp.task('server', ['assets', 'styles', 'scripts'], () => {
     proxy   : `http://localhost/${local}public/`,
     browser : 'Google Chrome'
   })
-  gulp.watch(`${config.src}assets/**/*.*`, ['assets'])
+  gulp.watch(`${config.sources}assets/**/*.*`, ['assets'])
   gulp.watch([
-    `${config.src}scss/**/*.scss`,
-    `${config.src}scss/*.scss`
+    `${config.sources}scss/**/*.scss`,
+    `${config.sources}scss/*.scss`
   ], ['styles'])
 })
 
@@ -156,9 +156,9 @@ gulp.task('scripts', () => {
 })
 
 /**
- * 
+ *
  * Production
- * 
+ *
  */
 
 // CSS
@@ -239,9 +239,9 @@ gulp.task('maps', () => {
 })
 
 /**
- * 
+ *
  * Run
- * 
+ *
  */
 
 gulp.task('default', ['server'])
