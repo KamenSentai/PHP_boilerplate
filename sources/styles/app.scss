@@ -3,7 +3,6 @@
 @import 'tools/variables';
 @import 'tools/functions';
 @import 'tools/mixins';
-@import 'tools/animations';
 
 // Bases
 @import 'bases/reset';
@@ -14,3 +13,4 @@
 @import 'layouts/footer';
 
 // Modules
+@import 'modules/button';
